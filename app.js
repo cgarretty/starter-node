@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var twilio = require('twilio');
 
+require('dotenv').config();
+
 // Load configuration information from system environment variables.
 var TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID,
     TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN,
@@ -30,7 +32,7 @@ app.get('/', function(req, res, next) {
   res.render('index');
 });
 
-// handle a POST request to send a text message. 
+// handle a POST request to send a text message.
 // This is sent via ajax on our home page
 app.post('/message', function(req, res, next) {
   // Use the REST client to send a text message
@@ -64,8 +66,8 @@ app.post('/hello', function(req, res, next) {
   var twiml = new twilio.twiml.VoiceResponse();
   // var twiml = new twilio.TwimlResponse();
   twiml.say('Hello there! You have successfully configured a web hook.');
-  twiml.say('Good luck on your Twilio quest!', { 
-      voice:'woman' 
+  twiml.say('Good luck on your Twilio quest!', {
+      voice:'woman'
   });
 
   // Return an XML response to this request
